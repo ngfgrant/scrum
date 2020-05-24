@@ -9,31 +9,73 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
         go: ["1.12", "1.13", "1.14"]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Go
+        uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go }}
-      - run: go clean
-      - run: go install
-      - run: go build
+
+      - name: Build
+        run: |
+          go clean
+          go install
+          go build
+
   lint:
     name: lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Go
+        uses: actions/setup-go@v2
         with:
           go-version: "1.14"
-      - run: go get -u golang.org/x/lint/golint
-      - run: golint
+
+      - name: Lint
+        run: |
+          go get -u golang.org/x/lint/golint
+          golint
 
   test:
     name: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Go
+        uses: actions/setup-go@v2
         with:
           go-version: "1.14"
-      - run: go install
-      - run: go test
+
+      - name: Test
+        run: |
+          go install
+          go test
+
+  docs:
+    name: docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: "1.14"
+
+      - name: Install Hugo
+        run: |
+          git clone https://github.com/gohugoio/hugo.git
+          cd hugo/
+          go install --tags extended
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Generate Site
+        run: |
+          cd site/
+          hugo -d ../docs --cleanDestinationDir --minify --verbose
