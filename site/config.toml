@@ -1,4 +1,4 @@
-baseURL = "ngfgrant.github.io/scrum/"
+baseURL = "https://ngfgrant.github.io/scrum/"
 languageCode = "en-gb"
 title = "Github Scrum"
 themesDir = "themes"

@@ -3,15 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/</loc>
+    <loc>https://ngfgrant.github.io/scrum/docs/</loc>
+    <lastmod>2018-11-28T15:14:39+10:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://ngfgrant.github.io/scrum/</loc>
+    <lastmod>2018-11-28T15:14:39+10:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://ngfgrant.github.io/scrum/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ngfgrant.github.io/scrum/tags/</loc>
   </url>
   
 </urlset>
